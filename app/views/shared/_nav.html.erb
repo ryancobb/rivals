@@ -1,0 +1,9 @@
+<nav>
+  <ul class="nav">
+    <li id="logo">Rivals</li>
+    <li class="nav-item"><%= link_to "Matches", matches_path %></li>
+    <li class="nav-item">
+      <%= current_user ? link_to("Hi, #{current_user.name}", edit_user_registration_path) : link_to("Sign in", new_user_session_path) %>
+    </li>
+  </ul>
+</nav>

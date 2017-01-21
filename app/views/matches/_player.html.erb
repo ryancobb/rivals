@@ -1,0 +1,7 @@
+<div class="player">
+  <% if local_assigns[:player] %>
+    <h2><%= player %></h2>
+  <% else %>
+    <%= render "player_picker" %>
+  <% end %>
+</div>
