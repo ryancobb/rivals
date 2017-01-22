@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :matches do
     resources :games
   end
+
+  get "/users" => "users#player_picker"
 end
