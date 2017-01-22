@@ -8,3 +8,34 @@
   justify-content: center;
   text-align: center;
 }
+
+.score-picker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100px;
+}
+
+.player-bottom {
+  border-top: 1px solid black;
+}
+
+.player-top {
+  border-bottom: 1px solid black;
+}
+
+.game .player {
+  flex: 1;
+  background-color: lightgray;
+}
+
+.game .player:hover {
+  background-color: green;
+}
