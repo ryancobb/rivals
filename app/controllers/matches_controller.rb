@@ -4,7 +4,6 @@ class MatchesController < ApplicationController
   end
 
   def new
-    @match = Match.new
   end
 
 end

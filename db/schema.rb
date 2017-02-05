@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122045414) do
+ActiveRecord::Schema.define(version: 20170205012011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,25 +18,17 @@ ActiveRecord::Schema.define(version: 20170122045414) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "match_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "winning_team"
     t.index ["match_id"], name: "index_games_on_match_id", using: :btree
   end
 
   create_table "matches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "scores", force: :cascade do |t|
-    t.integer  "game_id"
-    t.integer  "team"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "score"
-    t.index ["game_id"], name: "index_scores_on_game_id", using: :btree
-    t.index ["user_id"], name: "index_scores_on_user_id", using: :btree
+    t.integer  "home_team"
+    t.integer  "away_team"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,6 +50,4 @@ ActiveRecord::Schema.define(version: 20170122045414) do
   end
 
   add_foreign_key "games", "matches"
-  add_foreign_key "scores", "games"
-  add_foreign_key "scores", "users"
 end

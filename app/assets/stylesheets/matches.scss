@@ -2,40 +2,72 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.matchup {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+.match {
+    display: flex;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+    .game {
+        flex: 1;
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+
+            .team {
+                display: flex;
+                height: 150px;
+            }
+
+            .home-team {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
 }
 
-.score-picker {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+.control-container {
+    position: relative;
+    width: 100%;
+
+    .control {
+        cursor: pointer;
+        width: 100%;
+
+        :hover ~ .control-indicator {
+            background: #E9E9E9;
+        }
+
+        input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .control-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+    }
 }
 
-.game {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100px;
+// Checked state
+.control input:checked ~ .control-indicator {
+    background: #47C36A;
 }
 
-.player-bottom {
-  border-top: 1px solid black;
+// Hover state while checked
+.control:hover input:not([disabled]):checked ~ .control-indicator,
+.control input:checked:focus ~ .control-indicator {
+    background: #47C36A;
 }
 
-.player-top {
-  border-bottom: 1px solid black;
-}
-
-.game .player {
-  flex: 1;
-  background-color: lightgray;
-}
-
-.game .player:hover {
-  background-color: green;
+// Disabled state
+.control input:disabled ~ .control-indicator {
+    pointer-events: none;
+    opacity: .6;
+    background: #e6e6e6;
 }

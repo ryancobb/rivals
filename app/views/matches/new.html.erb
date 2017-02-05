@@ -1,5 +1,44 @@
-<div class="matchup">
-  <%= render "player", { :player => current_user.name } %>
-  <%= render "score_picker" %>
-  <%= render "player_picker" %>
+<%= render 'player' %>
+<div class="match">
+	<div class="game">
+		<div class="control-group">
+			<div class="team home-team">
+				<div class="control-container">
+					<label class="control control-radio">
+						<input type="radio" name="game1">
+						<div class="control-indicator"></div>
+					</label>
+				</div>
+			</div>
+			<div class="team away-team">
+				<div class="control-container">
+					<label class="control control-radio">
+						<input type="radio" name="game1">
+						<div class="control-indicator"></div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="game">
+		<div class="control-group">
+			<div class="team home-team">
+				<div class="control-container">
+					<label class="control control-radio">
+						<input type="radio" name="game2">
+						<div class="control-indicator"></div>
+					</label>
+				</div>
+			</div>
+			<div class="team away-team">
+				<div class="control-container">
+					<label class="control control-radio">
+						<input type="radio" name="game2">
+						<div class="control-indicator"></div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<%= render 'player_picker' %>
