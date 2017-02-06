@@ -1,3 +1,3 @@
 <div id="away-player" class="player">
-  <%= text_field_tag "player-picker", nil, class: "typeahead" %>
+	<%= select_tag "away-player-select", options_for_select(@users.collect{ |u| [u.name, u.id] }) %>
 </div>

@@ -1,12 +1,15 @@
-<%= render 'player' %>
-<div id="match">
-	<button id="removeGame" class="button">-</button>
-	<div class="games">
-	</div>
-	<button id="addGame" class="button">+</button>
-</div>
-<%= render 'player_picker' %>
 
+<%= form_tag '/matches' do %>
+	<%= render 'player' %>
+	<div id="match">
+		<button id="removeGame" class="button">-</button>
+		<div class="games">
+		</div>
+		<button id="addGame" class="button">+</button>
+	</div>
+	<%= render 'player_picker' %>
+	<input type="submit" value="Submit">
+<% end %>
 
 <script>
 $(function() {

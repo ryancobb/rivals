@@ -12,6 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require twitter/typeahead
+//= require select2
 //= require_tree .

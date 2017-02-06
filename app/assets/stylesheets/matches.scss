@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.select2 {
+    text-align: center;
+}
+
 #match {
     display: flex;
     background: #fff;
@@ -109,28 +113,4 @@
     pointer-events: none;
     opacity: .6;
     background: #e6e6e6;
-}
-
-.twitter-typeahead {
-    display: flex;
-    width: 100%;
-    text-align: center;
-
-    .tt-input {
-        flex: 1;
-    }
-
-    input {
-        text-align: center;
-        width: 90%;
-    }
-
-    .typeahead {
-        padding: 10px;
-        margin: 10px;
-        border: 1px solid black;
-        border-radius: 5px;
-        font-size: 18px;
-
-    }
 }

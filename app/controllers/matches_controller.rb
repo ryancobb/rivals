@@ -4,6 +4,11 @@ class MatchesController < ApplicationController
   end
 
   def new
+  	@users = User.all
+  end
+
+  def create
+  	byebug
   end
 
 end

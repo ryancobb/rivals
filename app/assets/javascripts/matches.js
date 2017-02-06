@@ -1,28 +1,28 @@
-// instantiate the bloodhound suggestion engine
-var users = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: '/users',
-  remote: {
-    url: '/users?q=%QUERY',
-    wildcard: '%QUERY'
-  }
-});
-
 var Match = {};
 
 $(function() {
-  $('.typeahead').typeahead(null, {
-    name: 'users',
-    displayKey: 'name',
-    valueKey: 'id',
-    source: users,
-    minLength: 3
+  // Set up select
+  $('select').select2({ 
+    width: '75%',
+    ajax: {
+      url: '/users',
+      dataType: 'json',
+      delay: 250,
+      cache: true,
+      data: function(params) {
+        return {
+          q: params.term,
+          notUser: document.getElementById("home-player").getAttribute("data")
+        }  
+      },
+      processResults: function(data) {
+        return {
+          results: data
+        }
+      }
+    },
+    minimumInputLength: 2
   });
-
-  $('.typeahead').on('typeahead:selected', function(event, datum) {
-  console.log(datum);
-  })
 
   Match = {
     initialize: function () {
@@ -49,7 +49,7 @@ $(function() {
                   <div class="team home-team">
                     <div class="control-container">
                       <label class="control control-radio">
-                        <input type="radio" name="game-${gameNumber}" value="${Match.homePlayer}">
+                        <input type="radio" name="match_winner[game-${gameNumber}]" value="${Match.homePlayer}">
                         <div class="control-indicator"></div>
                       </label>
                     </div>
@@ -58,7 +58,7 @@ $(function() {
                   <div class="team away-team">
                     <div class="control-container">
                       <label class="control control-radio">
-                        <input type="radio" name="game-${gameNumber}" value="${Match.homePlayer}">
+                        <input type="radio" name="match_winner[game-${gameNumber}]" value="foobar">
                         <div class="control-indicator"></div>
                       </label>
                     </div>
