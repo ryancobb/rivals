@@ -1,44 +1,15 @@
 <%= render 'player' %>
-<div class="match">
-	<div class="game">
-		<div class="control-group">
-			<div class="team home-team">
-				<div class="control-container">
-					<label class="control control-radio">
-						<input type="radio" name="game1">
-						<div class="control-indicator"></div>
-					</label>
-				</div>
-			</div>
-			<div class="team away-team">
-				<div class="control-container">
-					<label class="control control-radio">
-						<input type="radio" name="game1">
-						<div class="control-indicator"></div>
-					</label>
-				</div>
-			</div>
-		</div>
+<div id="match">
+	<button id="removeGame" class="button">-</button>
+	<div class="games">
 	</div>
-	<div class="game">
-		<div class="control-group">
-			<div class="team home-team">
-				<div class="control-container">
-					<label class="control control-radio">
-						<input type="radio" name="game2">
-						<div class="control-indicator"></div>
-					</label>
-				</div>
-			</div>
-			<div class="team away-team">
-				<div class="control-container">
-					<label class="control control-radio">
-						<input type="radio" name="game2">
-						<div class="control-indicator"></div>
-					</label>
-				</div>
-			</div>
-		</div>
-	</div>
+	<button id="addGame" class="button">+</button>
 </div>
 <%= render 'player_picker' %>
+
+
+<script>
+$(function() {
+	Match.initialize();
+})
+</script>

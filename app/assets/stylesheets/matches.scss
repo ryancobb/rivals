@@ -2,17 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.match {
+#match {
     display: flex;
     background: #fff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 
-    .game {
+    .button {
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .button:hover {
+        background-color: #E9E9E9;
+    }
+
+    .games {
+        display: flex;
         flex: 1;
+        flex-direction: row;
+
+        .game {
+            flex: 1;
+            display: flex;
+            margin: 5px;
+            align-items: center;
+            justify-content: flex-end;
+            
+            .gameTitle {
+                transform: rotate(-90deg);
+                font-size: 11px;
+            }
+        }
 
         .control-group {
+            flex: 1;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
 
             .team {
                 display: flex;
@@ -54,6 +83,16 @@
     }
 }
 
+.home-team .control-indicator {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.away-team .control-indicator {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 // Checked state
 .control input:checked ~ .control-indicator {
     background: #47C36A;
@@ -70,4 +109,28 @@
     pointer-events: none;
     opacity: .6;
     background: #e6e6e6;
+}
+
+.twitter-typeahead {
+    display: flex;
+    width: 100%;
+    text-align: center;
+
+    .tt-input {
+        flex: 1;
+    }
+
+    input {
+        text-align: center;
+        width: 90%;
+    }
+
+    .typeahead {
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-size: 18px;
+
+    }
 }
