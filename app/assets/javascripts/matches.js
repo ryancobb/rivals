@@ -8,11 +8,10 @@ $(function() {
       url: '/users',
       dataType: 'json',
       delay: 250,
-      cache: true,
       data: function(params) {
         return {
           q: params.term,
-          notUser: document.getElementById("home-player").getAttribute("data")
+          notUser: document.getElementById("home_player").value
         }  
       },
       processResults: function(data) {
@@ -27,16 +26,19 @@ $(function() {
   Match = {
     initialize: function () {
       this.domMatch = $("#match .games");
-      this.addButton = $("#addGame");
-      this.removeButton = $("#removeGame");
+      this.addButton = document.getElementById('addGame');
+      this.removeButton = document.getElementById('removeGame');
       this.games = document.getElementsByClassName("game");
-      this.homePlayer = document.getElementById("home-player").getAttribute("data");
+      this.homePlayer = document.getElementById("home_player").value;
+      this.matchForm = $("#match-form");
+      this.playerSelect = $("select");
 
       // Add first game
       this.addGame();
 
-      this.addButton.click(function() { Match.addGame(); });
-      this.removeButton.click(function() { Match.removeGame(); });
+      this.bindEvents();
+      // this.addButton.click(function() { Match.addGame(); });
+      // this.removeButton.click(function() { Match.removeGame(); });
     },
     gameHTML: function() { 
       var gameNumber = Match.games.length + 1;
@@ -49,7 +51,7 @@ $(function() {
                   <div class="team home-team">
                     <div class="control-container">
                       <label class="control control-radio">
-                        <input type="radio" name="match_winner[game-${gameNumber}]" value="${Match.homePlayer}">
+                        <input type="radio" name="match_winner[game-${gameNumber}]" value="${this.homePlayer}">
                         <div class="control-indicator"></div>
                       </label>
                     </div>
@@ -70,7 +72,7 @@ $(function() {
       this.games.length == 0 ? gamestoAdd = 3 : gamestoAdd = 2;
 
       for(i=0; i < gamestoAdd; i++) {
-        this.domMatch.append(this.gameHTML);
+        this.domMatch.append(this.gameHTML.bind(this));
       }
     },
 
@@ -79,6 +81,23 @@ $(function() {
         $(".game").last().remove();
         $(".game").last().remove();
       }
+    },
+
+    submitMatch: function() {
+      // Do verifications
+
+      // Modify form data
+      
+      return true;
+    },
+
+    bindEvents: function() {
+      this.addButton.addEventListener("click", this.addGame.bind(this));
+      this.removeButton.addEventListener("click", this.removeGame.bind(this));
+      this.matchForm.submit(this.submitMatch.bind(this));
+      this.playerSelect.on("select2:select", function() {
+        $(".away-team input[type='radio']").val($("select option:selected").val());
+      });
     }
   }
 })

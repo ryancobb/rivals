@@ -74,9 +74,3 @@ nav a {
   border-bottom: 1px solid gray;
   color: gray;
 }
-
-.player {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}

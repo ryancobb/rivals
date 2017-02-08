@@ -1,3 +1,4 @@
-<div id="home-player" data="<%= current_user.id %>" class="player">
+<div id="home-player" class="player">
     <h2><%= current_user.name %></h2>
-</div>
+    <%= hidden_field_tag "home_player", current_user.id %>
+ </div>
