@@ -51,7 +51,7 @@ $(function() {
                   <div class="team home-team">
                     <div class="control-container">
                       <label class="control control-radio">
-                        <input type="radio" name="match_winner[game-${gameNumber}]" value="${this.homePlayer}">
+                        <input type="radio" name="winning_player[game-${gameNumber}]" value="${this.homePlayer}">
                         <div class="control-indicator"></div>
                       </label>
                     </div>
@@ -60,7 +60,7 @@ $(function() {
                   <div class="team away-team">
                     <div class="control-container">
                       <label class="control control-radio">
-                        <input type="radio" name="match_winner[game-${gameNumber}]" value="foobar">
+                        <input type="radio" name="winning_player[game-${gameNumber}]" value="foobar">
                         <div class="control-indicator"></div>
                       </label>
                     </div>
@@ -73,7 +73,9 @@ $(function() {
 
       for(i=0; i < gamestoAdd; i++) {
         this.domMatch.append(this.gameHTML.bind(this));
-      }
+      };
+
+      this._fillAwayTeamData();
     },
 
     removeGame: function() {
@@ -86,18 +88,18 @@ $(function() {
     submitMatch: function() {
       // Do verifications
 
-      // Modify form data
-      
       return true;
+    },
+
+    _fillAwayTeamData: function() {
+      $(".away-team input[type='radio']").val($("select option:selected").val());
     },
 
     bindEvents: function() {
       this.addButton.addEventListener("click", this.addGame.bind(this));
       this.removeButton.addEventListener("click", this.removeGame.bind(this));
       this.matchForm.submit(this.submitMatch.bind(this));
-      this.playerSelect.on("select2:select", function() {
-        $(".away-team input[type='radio']").val($("select option:selected").val());
-      });
+      this.playerSelect.on("select2:select", this._fillAwayTeamData);
     }
   }
 })
