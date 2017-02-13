@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require select2
+//= require jquery.validate
 //= require_tree .

@@ -3,4 +3,11 @@
                                    :action => "New",
                                    :action_path => new_match_path,
                                    :action_icon => 'plus' } %>
+	<table>
+		<% @matches.each do |match| %>
+			<%= render "match", { :match => match} %>
+		<% end %>
+	</table>
+
+ 	<%= will_paginate @matches %>
 </div>

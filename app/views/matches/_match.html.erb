@@ -1,0 +1,8 @@
+<tr>
+	<td><%= match.created_at.strftime('%a %b %d') %></td>
+	<td><%= match.home_team.name %></td>
+	<td><%= match.home_team_wins %> / <%= match.games.count %>
+	<td> VS. </td>
+	<td><%= match.away_team.name %></td>
+	<td><%= match.away_team_wins %> / <%= match.games.count %>
+</tr>
