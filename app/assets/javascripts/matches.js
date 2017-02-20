@@ -25,30 +25,30 @@ $(function() {
         gameHTML: function() {
             var gameNumber = Match.games.length + 1;
 
-            return `<div class="game game-${gameNumber}">
-                <div class="gameTitle">
-                  Game ${gameNumber}
-                </div>
-                <div class="control-group">
-                  <div class="team home-team">
-                    <div class="control-container">
-                      <label class="control control-radio">
-                        <input type="radio" name="winning_player[game-${gameNumber}]" value="${this.homePlayer}" required>
-                        <div class="control-indicator"></div>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="team away-team">
-                    <div class="control-container">
-                      <label class="control control-radio">
-                        <input type="radio" name="winning_player[game-${gameNumber}]" value="foobar">
-                        <div class="control-indicator"></div>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>`
+            return '<div class="game game-${gameNumber}"> \
+                <div class="gameTitle"> \
+                  Game ${gameNumber} \
+                </div> \
+                <div class="control-group"> \
+                  <div class="team home-team"> \
+                    <div class="control-container"> \
+                      <label class="control control-radio"> \
+                        <input type="radio" name="winning_player[game-${gameNumber}]" value="${this.homePlayer}" required> \
+                        <div class="control-indicator"></div> \
+                      </label> \
+                    </div> \
+                  </div> \
+                    \
+                  <div class="team away-team"> \
+                    <div class="control-container"> \
+                      <label class="control control-radio"> \
+                        <input type="radio" name="winning_player[game-${gameNumber}]" value="foobar"> \
+                        <div class="control-indicator"></div> \
+                      </label> \
+                    </div> \
+                  </div> \
+                </div> \
+              </div>'
         },
         addGame: function() {
             var gamestoAdd = 0;
