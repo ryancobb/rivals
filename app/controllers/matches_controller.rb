@@ -1,15 +1,19 @@
 class MatchesController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
 
   def index
-    @matches = Match.includes(:home_team, :away_team, :games).paginate(:page => params[:page])
+    @matches = Match.includes(:home_team, :away_team, :games).order('id DESC').paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
   end
 
   def create
-  	@match = Match.new(:home_team => match_params[:home_player], 
-  						 :away_team => match_params[:away_player])
+    home_player = User.find(match_params[:home_player])    
+    away_player = User.find(match_params[:away_player])
+
+  	@match = Match.new(:home_team => home_player, 
+  						 :away_team => away_player)
 
     match_created? ? redirect_to(root_path) : render("new")
   end
@@ -31,7 +35,7 @@ class MatchesController < ApplicationController
   def games_created?
     match_params[:winning_player].all? do |k,v|
       game = @match.games.new(:winning_team => v)
-      game.save
+      game.save!
     end
   end
 end

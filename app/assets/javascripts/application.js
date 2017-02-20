@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require select2
+//= require tether
+//= require bootstrap-sprockets
 //= require jquery.validate
 //= require_tree .

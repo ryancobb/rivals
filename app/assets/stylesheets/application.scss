@@ -1,0 +1,65 @@
+$blue: #273161;
+$light-blue: #496190;
+$green: #afd8ba;
+$dark-green: #afd8ba;
+$yellow: #e8d482;
+$orange: #ffb338;
+$red: #BD4F6C;
+$gray: #dedede;
+
+$box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.5);
+
+@import 'bootstrap';
+@import 'bootstrap_overrides';
+@import 'selectize.default';
+@import 'font-awesome';
+@import 'matches';
+
+.error {
+  border: 2px solid red !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav.navbar {
+  background-color: $blue;
+  box-shadow: $box-shadow;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-items {
+  text-decoration: none;
+  color: white;
+}
+
+#logo {
+  font-family: 'VT323', monospace;
+  margin-right: auto;
+  font-size: 4em;
+  color: $yellow;
+}
+
+.actionbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  padding-top: 30px;
+  align-items: baseline;
+}
+
+.footer {
+  width: 100%;
+  background-color: $blue;
+}
+
+.container {
+  margin-top: 30px;
+}

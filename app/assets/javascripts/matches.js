@@ -14,8 +14,8 @@ $(function() {
 
         initialize: function() {
             this._config();
+            this._setUpSelectize();
             this._setUpFormValidation();
-            this._setUpSelect2();
             this._bindEvents();
 
             // Add first game
@@ -71,72 +71,83 @@ $(function() {
         },
 
         _fillAwayTeamData: function() {
-            $(".away-team input[type='radio']").val($("select option:selected").val());
+            $(".away-team input[type='radio']").val(this.playerSelect[0].selectize.getValue());
         },
 
         _bindEvents: function() {
             this.addButton.addEventListener("click", this.addGame.bind(this));
             this.removeButton.addEventListener("click", this.removeGame.bind(this));
-            this.playerSelect.on("select2:select", this._fillAwayTeamData);
-            this.playerSelect.on('change', function() {
-                $(this).valid();
-            })
         },
 
         _setUpFormValidation: function() {
             this.matchForm.validate({
-                ignore: [], // enables hidden field validation so select2 works
+                ignore: [':hidden:not([class~=selectized]),:hidden > .selectized, .selectize-control .selectize-input input'],
                 errorPlacement: function() {
                     return false;
                 },
                 highlight: function(element, errorClass) {
                     $element = $(element);
 
-                    switch ($element.prop('nodeName')) {
-                        case 'INPUT':
-                            $element.parents('.control-group').addClass(errorClass);
-                            break;
-                        case 'SELECT':
-                            $element.siblings('span').addClass(errorClass);
-                            break;
+                    if ($element.attr('id') == 'away_player-selectized') {
+                        $element.parents('.selectize-input').addClass(errorClass);
+                    }
+                    else {
+                        $element.parents('.control-group').addClass(errorClass);
                     }
                 },
                 unhighlight: function(element, errorClass) {
                     $element = $(element);
 
-                    switch ($element.prop('nodeName')) {
-                        case 'INPUT':
-                            $element.parents('.control-group').removeClass(errorClass);
-                            break;
-                        case 'SELECT':
-                            $element.siblings('span').removeClass(errorClass);
-                            break;
+                    if ($element.attr('id') == 'away_player-selectized') {
+                        $element.parents('.selectize-input').removeClass(errorClass);
+                    }
+                    else {
+                        $element.parents('.control-group').removeClass(errorClass);
                     }
                 }
             })
         },
 
-        _setUpSelect2: function() {
-            this.playerSelect.select2({
-                width: '75%',
-                ajax: {
-                    url: '/users',
-                    dataType: 'json',
-                    delay: 250,
-                    data: function(params) {
-                        return {
-                            q: params.term,
-                            notUser: document.getElementById("home_player").value
-                        }
+        _setUpSelectize: function() {
+            this.playerSelect.selectize({
+                valueField: 'id',
+                labelField: 'name',
+                searchField: 'name',
+                options: [],
+                create: false,
+                render: {
+                    item: function(item, escape) {
+                        return '<div>' +
+                            (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                            (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                            '</div>';
                     },
-                    processResults: function(data) {
-                        return {
-                            results: data
-                        }
+                    option: function(item, escape) {
+                        var label = item.name || item.email;
+                        var caption = item.name ? item.email : null;
+                        return '<div>' +
+                            (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                            (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                            '</div>'; 
                     }
                 },
-                minimumInputLength: 2
-            });
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    $.ajax({
+                        url: '/users?q=' + encodeURIComponent(query),
+                        type: 'GET',
+                        error: function() {
+                            callback();
+                        },
+                        success: function(res) {
+                            callback(res);
+                        }
+                    })
+                },
+                onChange: function(value) {
+                    $(".away-team input[type='radio']").val(value);
+                }
+            })
         }
     }
 })

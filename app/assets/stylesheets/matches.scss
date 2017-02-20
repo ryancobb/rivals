@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.winning-team {
+    font-weight: bold;
+}
+
 #match-form {
     width: 100%;
     display: flex;
@@ -14,28 +18,40 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: $blue;
+    padding: 30px;
+    box-shadow: $box-shadow;
+    z-index: 1;
 }
 
 #submit-button {
     width: 100px;
+    margin: 20px;
+}
+
+#home-player {
+    font-family: 'VT323', monospace;
+    width: 100%;
+    color: $light-blue;
+    text-shadow: 2px 2px 2px black;
+
+    h2 {
+        font-size: 5em;
+        margin: 0;
+    }
+}
+
+#away-player {
+  width: 100%;
 }
 
 .player {
     text-align: center;
 }
 
-.select2 {
-    text-align: center;
-}
-
-#away-player {
-    margin: 20px;
-    width: 400px;
-}
-
 #match {
     .button {
-        background-color: transparent;
+        background-color: $gray;
         border: 1px solid black;
         font-size: 20px;
         padding: 15px;
@@ -60,9 +76,17 @@
             
             .gameTitle {
                 font-size: 11px;
+                color: white;
             }
         }
     }
+}
+
+.bottom {
+    padding: 50px;
+    width: 100%;
+    text-align: center;
+    box-shadow: $box-shadow;
 }
 
 .control-group {
@@ -71,6 +95,7 @@
     flex-direction: column;
     border: 1px solid black;
     border-radius: 10px;
+    box-shadow: $box-shadow;
 
     .team {
         display: flex;
@@ -91,7 +116,7 @@
         width: 100%;
 
         :hover ~ .control-indicator {
-            background: rgba(31, 239, 27, 0.10);
+            background: $green;
         }
 
         input {
@@ -110,6 +135,10 @@
     }
 }
 
+.control-indicator {
+    background-color: rgba(255,255,255,0.7);
+}
+
 .home-team .control-indicator {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -122,13 +151,13 @@
 
 // Checked state
 .control input:checked ~ .control-indicator {
-    background: rgb(152, 207, 171);
+    background: $dark-green;
 }
 
 // Hover state while checked
 .control:hover input:not([disabled]):checked ~ .control-indicator,
 .control input:checked:focus ~ .control-indicator {
-    background: rgb(152, 207, 171);
+    background: $dark-green;
 }
 
 // Disabled state
